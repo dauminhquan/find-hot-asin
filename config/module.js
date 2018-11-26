@@ -1,5 +1,6 @@
 let modules = {};
 modules.init = app => {
+    const fileUpload = require('express-fileupload');
     const path = require('path');
     const cookieParser = require('cookie-parser');
     const logger = require('morgan');
@@ -16,6 +17,7 @@ modules.init = app => {
     app.use(express.static(path.join(__dirname, '../public')));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(fileUpload());
 };
 
 module.exports = modules;

@@ -41,7 +41,30 @@ body{
 	background-attachment:fixed;
 	text-align:center;
 }
+.actions{
+	text-align: left;
+	width: 100%;
+	padding-left: 15px;
+	margin-top: 40px;
+}
+.actions button{
+	border-radius: 10px;
+	height: 35px;
+}
+.button {
+	font: bold 11px Arial;
+	text-decoration: none;
+	background-color: #EEEEEE;
+	color: #333333;
+	padding: 2px 6px 2px 6px;
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #333333;
+	border-bottom: 1px solid #333333;
+	border-left: 1px solid #CCCCCC;
+}
+button.export-excel{
 
+}
 h1,h2,h3,h4,h5,h6{
 	margin:0;
 }
@@ -119,10 +142,66 @@ p.para-w3ls {
     width: 60%;
 	margin:0 auto;
 }
+.table-manage{
+	width: 100%;
+	margin:0 auto;
+	padding: 10px;
+	color: #ffffff;
+	height: 1000px;       /* Just for the demo          */
+	overflow-y: auto;    /* Trigger vertical scroll    */
+	overflow-x: auto;  /* Hide the horizontal scroll */
+}
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 2px grey;
+	border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: gray;
+	border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #b30000;
+}
+.table-manage thead{
+	border-bottom: solid 1px #f7e352;
+	justify-content: center;
+	line-height: 40px;
+	font-weight: bold;
+	color: aliceblue;
+}
+.table-manage tr td{
+	color: #ffffff;
+	height: 50px;
+	justify-content: center;
+	align-items: center;
+	padding-top: 15px;
+	text-align: center;
+	border-bottom: solid 1px #f7e352;
+	border-left: solid 1px #f7e352;
+	border-right: solid 1px #f7e352;
+
+	width: 20px !important;
+	margin:0 auto;
+	overflow-y: auto;    /* Trigger vertical scroll    */
+	overflow-x: auto;
+
+}
+.table{
+	width: 100%;
+}
 .process{
 	display: none;
 }
-.contact-form form {
+.contact-form #div-input-search {
     border: 1px solid #f53179;
 	display: -webkit-flex;
     display: flex;
@@ -132,7 +211,7 @@ p.para-w3ls {
 .subscribe{
 	margin-top:3em;
 }
-.subscribe input {
+.subscribe input,select {
     outline: none;
     padding: 12px 12px;
     background: transparent;
@@ -143,6 +222,7 @@ p.para-w3ls {
     border: none;
 	flex-basis: 75%;
     -webkit-flex-basis: 75%;
+	width: 50%;
 }
 .subscribe input#search {
     outline: none;
@@ -245,6 +325,7 @@ p.copy_rights a:hover {
 	.contact-form {
 		width: 70%;
 	}
+
 }
 @media(max-width: 991px){
 	.content h1 {
@@ -286,6 +367,7 @@ p.copy_rights a:hover {
 	.contact-form {
 		width: 80%;
 	}
+
 	p.copy_rights {
 		font-size: 14px;
 	}
@@ -378,6 +460,7 @@ p.copy_rights a:hover {
 	.contact-form {
 		width: 90%;
 	}
+
 	.content h1 {
 		font-size: 35px;
 		letter-spacing: 1px;
@@ -424,6 +507,11 @@ p.copy_rights a:hover {
 	.contact-form {
 		width: 95%;
 	}
-}
 
+}
+select#select-url option{
+	color: rgba(6,76,24,0.87);
+	background-color: rgba(180,172,168,0.21);
+	width: 50%;
+}
 /*--//responsive--*/

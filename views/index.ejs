@@ -1,9 +1,3 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -47,9 +41,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <h2>Tìm kiếm sản phẩm</h2>
             <div class="contact-form">
                 <form id="form-search">
-                    <input type="text" placeholder="Nhập Url tìm kiếm" id="url-find" required>
-                    <input type="submit" id="search" value="Tìm kiếm">
-                    <div class="clear"></div>
+                    <div id="div-input-search">
+                        <input type="text" placeholder="Nhập Url tìm kiếm" id="url-find" required>
+                        <input type="submit" id="search" value="Tìm kiếm">
+                        <div class="clear"></div>
+                    </div>
+                    <input type="number" min="0" step="1" placeholder="Min review" title="Min review" id="min-review" required>
+                    <input type="number" min="0" step="1" placeholder="Max review" title="Max review" id="max-review" required>
+                    <input type="number" min="0" step="1" placeholder="Chiều sâu" title="Chiều sâu" value="2" id="depth" required>
                 </form>
             </div>
         </div>
@@ -67,6 +66,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="/js/timer.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
     <script>
+        function makeid() {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            for (var i = 0; i < 64; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            return text;
+        }
         setInterval(function () {
             let strProcessing = $("#processing").text()
             strProcessing = strProcessing.replace('Processing','')
@@ -79,22 +87,30 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             $("#processing").text(strProcessing)
 
         },500)
-        const socket = io();
-        socket.on('done',data => {
-            $("#processing").css('display', 'none');
-            alert('Đã hoàn thành')
-            window.open('/get-asin?root_url='+$("#url-find").val(),'_blank')
-        })
     </script>
     <script>
         $("#form-search").submit(function(event){
             $("#processing").css('display', 'block');
             event.preventDefault()
+            let key = makeid()
+            const socket = io();
+            socket.on(key,data => {
+                $("#processing").css('display', 'none');
+                alert('Đã hoàn thành')
+                window.open('/get-asin?root_url='+$("#url-find").val(),'_blank')
+            })
+            let minReview = $("#min-review").val()
+            let maxReview = $("#max-review").val()
+            let depth = $("#depth").val()
             $.ajax({
                 type: "POST",
                 url: '/find-product',
                 data: {
-                    url: $("#url-find").val()
+                    url: $("#url-find").val(),
+                    key: key,
+                    minReview: minReview,
+                    maxReview: maxReview,
+                    depth: depth
                 },
                 success: (data) => {
                     console.log(data)
