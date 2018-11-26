@@ -222,6 +222,9 @@ p.para-w3ls {
     border: none;
 	flex-basis: 75%;
     -webkit-flex-basis: 75%;
+
+}
+.subscribe select{
 	width: 50%;
 }
 .subscribe input#search {
